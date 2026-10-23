@@ -395,6 +395,22 @@ $("delivery").addEventListener("change", e => {
 });
 updateTotal();
 
+
+function postViaIframe(fields){
+  return new Promise(resolve => {
+    let frame = document.getElementById("fsFrame");
+    if (!frame) { frame = document.createElement("iframe"); frame.name = frame.id = "fsFrame"; frame.hidden = true; document.body.appendChild(frame); }
+    const form = document.createElement("form");
+    form.method = "POST"; form.action = "https://formsubmit.co/" + encodeURIComponent(CONFIG.orderEmail); form.target = "fsFrame"; form.hidden = true;
+    for (const [k, v] of Object.entries(fields)) { const i = document.createElement("input"); i.type = "hidden"; i.name = k; i.value = v; form.appendChild(i); }
+    document.body.appendChild(form);
+    let done = false; const finish = ok => { if (!done) { done = true; form.remove(); resolve(ok); } };
+    frame.onload = () => finish(true);
+    setTimeout(() => finish(true), 8000);
+    form.submit();
+  });
+}
+
 function show(kind, html){ $("statusBox").hidden = false; const s = $("status"); s.className = "status " + kind; s.innerHTML = html; }
 
 $("orderForm").addEventListener("submit", async e => {
@@ -425,22 +441,26 @@ $("orderForm").addEventListener("submit", async e => {
     return;
   }
   const btn = $("submitBtn"); btn.disabled = true; btn.textContent = "Изпращане…";
+  const fields = {_subject: "Нова поръчка – Умна ученическа кутия", _template: "table", _captcha: "false", ...data};
+  const thanks = () => { f.reset(); updateTotal(); show("ok", "<b>Благодарим! Поръчката е изпратена.</b> Ще ви се обадим на " + data["Телефон"].replace(/[<>&]/g, "") + ", за да я потвърдим."); };
   try {
-    const res = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(CONFIG.orderEmail), {
-      method: "POST", headers: {"Content-Type": "application/json", Accept: "application/json"},
-      body: JSON.stringify({_subject: "Нова поръчка – Умна ученическа кутия", _template: "table", _captcha: "false", ...data})
-    });
-    const out = await res.json().catch(() => ({}));
-    if (res.ok && String(out.success) === "true") {
-      f.reset(); updateTotal();
-      show("ok", "<b>Благодарим! Поръчката е изпратена.</b> Ще ви се обадим на " + data["Телефон"].replace(/[<>&]/g, "") + ", за да я потвърдим.");
-    } else if (/activat/i.test(out.message || "")) {
+    let res, out = {};
+    try {
+      res = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(CONFIG.orderEmail), {
+        method: "POST", headers: {"Content-Type": "application/json", Accept: "application/json"}, body: JSON.stringify(fields)
+      });
+      out = await res.json().catch(() => ({}));
+    } catch (netErr) {
+      // fetch blocked (CORS / network filter) – fall back to a classic form post
+      await postViaIframe(fields); thanks(); return;
+    }
+    if (res.ok && String(out.success) === "true") thanks();
+    else if (/activat/i.test(out.message || "")) {
       show("info", "<b>Формата чака активиране.</b> На " + CONFIG.orderEmail + " е изпратен имейл от FormSubmit – натиснете „Activate Form“ в него (проверете и Spam). След това поръчките ще пристигат.");
-    } else throw new Error(out.message || ("HTTP " + res.status));
+    } else { await postViaIframe(fields); thanks(); }
   } catch (e) {
     console.warn("Order error:", e);
-    show("bad", "<b>Поръчката не успя да се изпрати.</b> " + (e && e.message ? "(" + String(e.message).replace(/[<>&]/g, "") + ") " : "") + "Опитайте отново след малко" +
-      (CONFIG.phone ? " или се обадете на " + CONFIG.phone + "." : "."));
+    show("bad", "<b>Поръчката не успя да се изпрати.</b> Опитайте отново след малко" + (CONFIG.phone ? " или се обадете на " + CONFIG.phone + "." : "."));
   } finally { btn.disabled = false; btn.textContent = "Изпрати поръчката"; }
 });
 </script>
