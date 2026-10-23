@@ -370,7 +370,8 @@ footer small{display:block;margin-top:14px;color:#8FB0A8;font-weight:600}
 const CONFIG = {
   price: 19.90,             // цена на комплект в евро (null = „XX €“)
   oldPrice: 24.90,          // редовна цена – показва се зачеркната (null = не се показва)
-  orderEmail: "yalamovbozhidar@gmail.com", // поръчките идват тук (FormSubmit)
+  orderEmail: "yalamovbozhidar@gmail.com", // за справка – поръчките идват на имейла от Web3Forms
+  web3formsKey: "bd29a19f-9a87-4707-9122-3f2608c20aad", // публичен ключ от web3forms.com
   phone: "",                // телефон за контакт, показва се долу
   email: "yalamovbozhidar@gmail.com" // имейл за контакт, показва се долу
 };
@@ -401,7 +402,7 @@ function postViaIframe(fields){
     let frame = document.getElementById("fsFrame");
     if (!frame) { frame = document.createElement("iframe"); frame.name = frame.id = "fsFrame"; frame.hidden = true; document.body.appendChild(frame); }
     const form = document.createElement("form");
-    form.method = "POST"; form.action = "https://formsubmit.co/" + encodeURIComponent(CONFIG.orderEmail); form.target = "fsFrame"; form.hidden = true;
+    form.method = "POST"; form.action = "https://api.web3forms.com/submit"; form.target = "fsFrame"; form.hidden = true;
     for (const [k, v] of Object.entries(fields)) { const i = document.createElement("input"); i.type = "hidden"; i.name = k; i.value = v; form.appendChild(i); }
     document.body.appendChild(form);
     let done = false; const finish = ok => { if (!done) { done = true; form.remove(); resolve(ok); } };
@@ -436,28 +437,26 @@ $("orderForm").addEventListener("submit", async e => {
     "Сума": CONFIG.price ? fmt(CONFIG.price * qty()) : "цената не е въведена", "Бележка": $("note").value.trim() || "—"
   };
 
-  if (!CONFIG.orderEmail) {
+  if (!CONFIG.web3formsKey) {
     show("info", "<b>Формата още не е свързана с имейл.</b> Поръчката не е изпратена.");
     return;
   }
   const btn = $("submitBtn"); btn.disabled = true; btn.textContent = "Изпращане…";
-  const fields = {_subject: "Нова поръчка – Умна ученическа кутия", _template: "table", _captcha: "false", ...data};
+  const fields = {access_key: CONFIG.web3formsKey, subject: "Нова поръчка – Умна ученическа кутия",
+    from_name: "Умна ученическа кутия", botcheck: "", ...data};
   const thanks = () => { f.reset(); updateTotal(); show("ok", "<b>Благодарим! Поръчката е изпратена.</b> Ще ви се обадим на " + data["Телефон"].replace(/[<>&]/g, "") + ", за да я потвърдим."); };
   try {
     let res, out = {};
     try {
-      res = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(CONFIG.orderEmail), {
+      res = await fetch("https://api.web3forms.com/submit", {
         method: "POST", headers: {"Content-Type": "application/json", Accept: "application/json"}, body: JSON.stringify(fields)
       });
       out = await res.json().catch(() => ({}));
     } catch (netErr) {
-      // fetch blocked (CORS / network filter) – fall back to a classic form post
-      await postViaIframe(fields); thanks(); return;
+      await postViaIframe(fields); thanks(); return;   // fetch blocked – classic form post
     }
-    if (res.ok && String(out.success) === "true") thanks();
-    else if (/activat/i.test(out.message || "")) {
-      show("info", "<b>Формата чака активиране.</b> На " + CONFIG.orderEmail + " е изпратен имейл от FormSubmit – натиснете „Activate Form“ в него (проверете и Spam). След това поръчките ще пристигат.");
-    } else { await postViaIframe(fields); thanks(); }
+    if (res.ok && out.success) thanks();
+    else throw new Error(out.message || ("HTTP " + res.status));
   } catch (e) {
     console.warn("Order error:", e);
     show("bad", "<b>Поръчката не успя да се изпрати.</b> Опитайте отново след малко" + (CONFIG.phone ? " или се обадете на " + CONFIG.phone + "." : "."));
