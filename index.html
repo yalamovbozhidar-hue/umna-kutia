@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!--CONTENT-START-->
+<title>Умна ученическа кутия</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="39 карти с рецепти и съвети за вкусна и балансирана училищна кутия. Поръчка с наложен платеж.">
+<meta property="og:title" content="Умна ученическа кутия">
+<meta property="og:description" content="39 карти с рецепти и съвети за вкусна и балансирана училищна кутия.">
+<meta property="og:image" content="https://yalamovbozhidar-hue.github.io/umna-kutia/assets/og.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+<style>
+/* Layout: brand-led single page — cream paper, teal bands, the cards themselves as the product photography.
+   Single light look on purpose: it mirrors the printed cards, so colours are set explicitly for every host theme. */
+:root{
+  --cream:#FFFCF4; --paper:#FFFFFF; --teal:#22A99F; --teal-dk:#14857C; --teal-ink:#0F6A63;
+  --coral:#EF6F61; --coral-ink:#C2493C; --green:#7DBB4F; --yellow:#F5C94C; --ink:#17362F; --muted:#56706A;
+  --teal-bg:#DDF1EE; --coral-bg:#FDE3DF; --green-bg:#E6F2DA; --yellow-bg:#FDF1CC; --line:#E4E8E2;
+  --display:"Nunito", ui-rounded, "Segoe UI Rounded", system-ui, sans-serif;
+  --body:"Nunito", ui-rounded, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --r:22px; --wrap:1120px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:8px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{font-family:var(--display);font-weight:900;letter-spacing:-.01em;text-wrap:balance;margin:0}
+.eyebrow{font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--coral-ink)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:900;font-size:17px;text-decoration:none;
+  background:var(--coral);color:#fff;border:0;border-radius:999px;padding:15px 26px;cursor:pointer;transition:transform .15s, background .15s}
+.btn:hover{background:var(--coral-ink);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--teal-ink);box-shadow:inset 0 0 0 2px var(--teal)}
+.btn.ghost:hover{background:var(--teal-bg)}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--cream)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb, var(--cream) 92%, transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand svg{width:46px;height:46px;flex:none}
+.brand .wm{display:flex;flex-direction:column;line-height:.9}
+.brand .w1{font-family:var(--display);font-weight:900;font-size:25px;color:var(--coral)}
+.brand .w2{font-family:var(--display);font-weight:900;font-size:10.5px;letter-spacing:.12em;margin-top:3px}
+.nav nav{display:flex;align-items:center;gap:26px;font-weight:800;font-size:15px}
+.nav nav a{text-decoration:none}
+.nav nav a:not(.btn):hover{color:var(--teal-ink)}
+.nav .btn{padding:10px 18px;font-size:15px}
+@media (max-width:760px){.nav nav a:not(.btn){display:none}}
+
+/* hero */
+.hero{padding-block:56px 72px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(40px,6vw,68px);line-height:1}
+.hero h1 em{font-style:normal;color:var(--teal-dk)}
+.hero p.lead{font-size:20px;color:var(--muted);max-width:30em;margin:22px 0 30px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px;padding:0;list-style:none}
+.facts li{background:var(--paper);border:1.5px solid var(--teal-bg);border-radius:999px;padding:7px 14px;font-weight:800;font-size:14px;font-variant-numeric:tabular-nums}
+.facts b{color:var(--teal-dk)}
+.fan{position:relative;height:520px;min-width:0}
+.fan img{position:absolute;width:56%;max-width:300px;border-radius:14px;box-shadow:0 18px 40px rgba(23,54,47,.18),0 2px 6px rgba(23,54,47,.08);transition:transform .35s ease}
+.fan img:nth-child(1){left:2%;top:46px;transform:rotate(-8deg)}
+.fan img:nth-child(2){left:24%;top:0;transform:rotate(1deg);z-index:2}
+.fan img:nth-child(3){right:0;top:58px;transform:rotate(9deg)}
+.fan:hover img:nth-child(1){transform:rotate(-11deg) translateX(-10px)}
+.fan:hover img:nth-child(3){transform:rotate(12deg) translateX(10px)}
+.blob{position:absolute;border-radius:50%;z-index:-1}
+.blob.y{width:420px;height:420px;background:var(--yellow);right:-140px;top:-120px;opacity:.9}
+.blob.c{width:220px;height:220px;background:var(--coral-bg);right:280px;bottom:-60px}
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr}
+  .fan{height:min(92vw,420px)}
+  .blob.y{width:300px;height:300px;right:-160px}
+}
+
+/* sections */
+section.band{padding-block:80px}
+.head{display:flex;flex-direction:column;gap:10px;margin-bottom:36px;max-width:40em}
+.head h2{font-size:clamp(30px,4vw,44px);line-height:1.05}
+.head p{margin:0;color:var(--muted);font-size:18px}
+
+/* inside */
+.inside{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.kind{background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r);padding:24px 22px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.kind .n{font-family:var(--display);font-weight:900;font-size:56px;line-height:1;font-variant-numeric:tabular-nums}
+.kind h3{font-size:20px}
+.kind p{margin:0;color:var(--muted);font-size:15.5px}
+.kind .tag{align-self:flex-start;font-weight:900;font-size:11.5px;letter-spacing:.1em;border-radius:999px;padding:4px 10px;text-transform:uppercase}
+@media (max-width:900px){.inside{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.inside{grid-template-columns:1fr}}
+
+.spec{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px 28px;color:var(--muted);font-weight:700;font-size:15px}
+.spec span b{color:var(--ink)}
+
+/* gallery */
+.gallery-band{background:var(--teal-dk);color:#fff;padding-block:72px}
+.gallery-band .head p{color:#BFE9E3}
+.gallery-band .eyebrow{color:var(--yellow)}
+.strip{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:16px;scrollbar-color:#BFE9E3 transparent}
+.strip figure{margin:0;flex:0 0 clamp(200px,24vw,250px);scroll-snap-align:start}
+.strip img{border-radius:12px;box-shadow:0 10px 24px rgba(0,0,0,.22)}
+.strip figcaption{font-weight:800;font-size:14px;margin-top:10px;color:#DFF4F1}
+
+/* why */
+.why{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.reason{display:flex;gap:18px;align-items:flex-start;padding:22px;border-radius:var(--r);min-width:0}
+.reason .ic{width:52px;height:52px;border-radius:16px;background:var(--paper);display:grid;place-items:center;flex:none}
+.reason .ic svg{width:28px;height:28px}
+.reason h3{font-size:21px;margin-bottom:4px}
+.reason p{margin:0;font-size:16px}
+@media (max-width:700px){.why{grid-template-columns:1fr}}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{background:var(--paper);border:1.5px solid var(--line);border-radius:var(--r);padding:24px;position:relative;min-width:0}
+.steps li::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:42px;height:42px;border-radius:50%;
+  font-family:var(--display);font-weight:900;font-size:20px;color:#fff;background:var(--coral);margin-bottom:14px}
+.steps li:nth-child(2)::before{background:var(--yellow);color:#5a4300}
+.steps li:nth-child(3)::before{background:var(--green)}
+.steps h3{font-size:20px;margin-bottom:6px}
+.steps p{margin:0;color:var(--muted);font-size:16px}
+@media (max-width:760px){.steps{grid-template-columns:1fr}}
+
+/* order */
+.order-band{background:var(--teal-bg);padding-block:80px}
+.order{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}
+.price-card{background:var(--paper);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.price{font-family:var(--display);font-weight:900;font-size:54px;line-height:1;color:var(--teal-dk);font-variant-numeric:tabular-nums}
+.launch{align-self:flex-start;background:var(--coral);color:#fff;font-weight:900;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:5px 12px}
+.price s{font-size:22px;color:var(--muted);font-weight:800;margin-left:6px}
+.price small{font-size:18px;color:var(--muted);font-weight:800}
+.price-card ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.price-card li{display:flex;gap:10px;align-items:flex-start;font-weight:700;font-size:15.5px}
+.price-card li svg{width:22px;height:22px;flex:none;margin-top:1px}
+.cod{background:var(--yellow-bg);border-radius:14px;padding:12px 14px;font-weight:800;font-size:15px}
+form{background:var(--paper);border-radius:var(--r);padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:16px;min-width:0}
+.f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.f.full{grid-column:1/-1}
+label{font-weight:800;font-size:14.5px}
+label .opt{color:var(--muted);font-weight:700}
+input,select,textarea{font:inherit;font-size:16px;color:var(--ink);background:var(--cream);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-bg)}
+textarea{min-height:84px;resize:vertical}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:44px;height:46px;border-radius:12px;border:1.5px solid var(--line);background:var(--cream);font:inherit;font-weight:900;font-size:20px;cursor:pointer;color:var(--ink)}
+.qty input{text-align:center;width:70px;flex:none}
+.consent{display:flex;gap:10px;align-items:flex-start;font-weight:600;font-size:14.5px;color:var(--muted)}
+.consent input{width:20px;height:20px;flex:none;margin-top:2px;accent-color:var(--teal-dk)}
+.err{color:var(--coral-ink);font-weight:800;font-size:13.5px}
+.f.total{flex-direction:row;}
+.total{display:flex;justify-content:space-between;align-items:center;font-weight:900;font-size:17px;border-top:1.5px dashed var(--line);padding-top:14px}
+.status{border-radius:14px;padding:16px 18px;font-weight:700}
+.status.ok{background:var(--green-bg)}
+.status.info{background:var(--yellow-bg)}
+.status.bad{background:var(--coral-bg)}
+.hp{position:absolute;left:-9999px}
+@media (max-width:860px){.order{grid-template-columns:1fr}}
+@media (max-width:520px){form{grid-template-columns:1fr;padding:20px}}
+
+/* faq */
+.faq{display:grid;gap:12px;max-width:820px}
+details{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:18px 22px}
+summary{font-family:var(--display);font-weight:900;font-size:18px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::after{content:"+";color:var(--teal-dk);font-size:24px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin:10px 0 0;color:var(--muted)}
+
+footer{background:var(--ink);color:#DCE9E5;padding-block:48px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px;align-items:center}
+footer .brand .w2{color:#fff}
+footer .brand .w1{color:var(--yellow)}
+footer .contacts{display:flex;flex-direction:column;gap:6px;font-weight:700}
+footer small{display:block;margin-top:14px;color:#8FB0A8;font-weight:600}
+</style>
+<!--HEAD-END-->
+</head>
+<body>
+<!--BODY-START-->
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Умна ученическа кутия – начало">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><rect x="4" y="4" width="112" height="112" rx="30" fill="#22A99F"/><g fill="none" stroke="#FFFCF4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M40 52 L80 52 A10 10 0 0 1 90 62 L90 84 A10 10 0 0 1 80 94 L40 94 A10 10 0 0 1 30 84 L30 62 A10 10 0 0 1 40 52 Z"/><path d="M48 52 L48 46 A7 7 0 0 1 55 39 L65 39 A7 7 0 0 1 72 46 L72 52"/><path d="M30 70 L90 70"/><path d="M54 70 L54 77 L66 77 L66 70"/></g><g transform="translate(66 16) scale(1.05)"><path d="M0 18 C1 7 9 0 22 0 C22 12 13 19 0 18 Z" fill="#7DBB4F"/><path d="M2 16 C7 11 11 8 16 5" stroke="#fff" stroke-opacity=".75" stroke-width="2" fill="none" stroke-linecap="round"/></g><path transform="translate(18 18) scale(.9)" d="M10 0 C10.6 5.6 12.4 7.4 20 8 C12.4 8.6 10.6 10.4 10 18 C9.4 10.4 7.6 8.6 0 8 C7.6 7.4 9.4 5.6 10 0 Z" fill="#F5C94C"/></svg>
+      <span class="wm"><span class="w1">Умна</span><span class="w2">УЧЕНИЧЕСКА КУТИЯ</span></span>
+    </a>
+    <nav aria-label="Основно меню">
+      <a href="#inside">Какво има вътре</a>
+      <a href="#how">Как работи</a>
+      <a href="#faq">Въпроси</a>
+      <a class="btn" href="#order">Поръчай</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <span class="blob y" aria-hidden="true"></span><span class="blob c" aria-hidden="true"></span>
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">Комплект карти за родители и деца</div>
+        <h1>Свежо знание <em>във всяка кутия.</em></h1>
+        <p class="lead">39 карти с рецепти и съвети, с които всяка училищна кутия става вкусна, балансирана и готова за минути.</p>
+        <div class="ctas">
+          <a class="btn" href="#order">Поръчай комплекта</a>
+          <a class="btn ghost" href="#inside">Виж какво има вътре</a>
+        </div>
+        <ul class="facts">
+          <li><b>28</b> рецепти</li>
+          <li><b>A6</b> · 105 × 148 мм</li>
+          <li>калории и макроси на всяка рецепта</li>
+        </ul>
+      </div>
+      <div class="fan" aria-label="Примерни карти от комплекта">
+        <img src="assets/hero-1.jpg" alt="Гръб на рецептурна карта: стъпки, хранителни стойности и идея за кутията" width="560" height="791">
+        <img src="assets/cover.jpg" alt="Корица на комплекта „Умна ученическа кутия“" width="560" height="791">
+        <img src="assets/hero-3.jpg" alt="Карта „Комбинирай своята кутия“" width="560" height="791">
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="inside">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">Какво има вътре</div>
+        <h2>39 карти, четири вида</h2>
+        <p>Всичко, което ви трябва, за да планирате кутията за цялата седмица, без да търсите рецепти всяка вечер.</p>
+      </div>
+      <div class="inside">
+        <article class="kind"><span class="tag" style="background:var(--coral-bg);color:var(--coral-ink)">Рецепти</span><span class="n" style="color:var(--coral)">28</span><h3>Рецепти</h3><p>Солени, сладки и снакове – с продукти, стъпки, хранителни стойности и идея какво да сложите до тях.</p></article>
+        <article class="kind"><span class="tag" style="background:var(--yellow-bg);color:#7A5B00">Знание</span><span class="n" style="color:#C99A12">7</span><h3>Знание за родителите</h3><p>Балансирана порция, методът 5 от 5, порциите в дланта, плодове, зеленчуци и млечни.</p></article>
+        <article class="kind"><span class="tag" style="background:var(--teal-bg);color:var(--teal-ink)">Комбинирай</span><span class="n" style="color:var(--teal)">3</span><h3>Комбинирай сам</h3><p>Кутия, сандвич и тортила – детето избира по едно от всяка група и сглобява само.</p></article>
+        <article class="kind"><span class="tag" style="background:var(--green-bg);color:#3F6E1F">Снак</span><span class="n" style="color:var(--green)">10</span><h3>Бързи снак идеи</h3><p>Комбинации за основния и следобедния снак, почти без готвене. Всички събрани на една карта.</p></article>
+      </div>
+      <div class="spec"><span><b>Формат:</b> A6, 105 × 148 мм</span><span><b>На всяка рецепта:</b> kcal, протеин, въглехидрати, мазнини, фибри</span><span><b>Повечето рецепти:</b> до 30 минути</span></div>
+    </div>
+  </section>
+
+  <section class="gallery-band" aria-labelledby="g-title">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">Разгледай картите</div>
+        <h2 id="g-title">Ясни стъпки, истински числа</h2>
+        <p>Плъзнете настрани, за да видите още карти от комплекта.</p>
+      </div>
+      <div class="strip" tabindex="0" aria-label="Карти от комплекта">
+        <figure><img src="assets/hero-2.jpg" alt="Карта „Методът 5 от 5“" width="560" height="791" loading="lazy"><figcaption>Методът 5 от 5</figcaption></figure>
+        <figure><img src="assets/contents.jpg" alt="Карта „Съдържание“ с всички 39 карти" width="560" height="791" loading="lazy"><figcaption>Съдържание на комплекта</figcaption></figure>
+        <figure><img src="assets/g-7.jpg" alt="Протеинов сандвич – стъпки и стойности" width="560" height="791" loading="lazy"><figcaption>Протеинов сандвич</figcaption></figure>
+        <figure><img src="assets/g-1.jpg" alt="Мини мъфини „Пица“ – стъпки и стойности" width="560" height="791" loading="lazy"><figcaption>Мини мъфини „Пица“</figcaption></figure>
+        <figure><img src="assets/g-2.jpg" alt="Шоколадови гофрети – стъпки и стойности" width="560" height="791" loading="lazy"><figcaption>Шоколадови гофрети</figcaption></figure>
+        <figure><img src="assets/g-4.jpg" alt="Шоколадови бонбони с нахут – стъпки и стойности" width="560" height="791" loading="lazy"><figcaption>Шоколадови бонбони с нахут</figcaption></figure>
+        <figure><img src="assets/g-3.jpg" alt="Карта „Порциите в дланта“" width="560" height="791" loading="lazy"><figcaption>Порциите в дланта</figcaption></figure>
+        <figure><img src="assets/g-6.jpg" alt="Карта „Колко порции на ден?“" width="560" height="791" loading="lazy"><figcaption>Колко порции на ден?</figcaption></figure>
+        <figure><img src="assets/g-5.jpg" alt="Карта „10 бързи снак идеи“" width="560" height="791" loading="lazy"><figcaption>10 бързи снак идеи</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">Защо работи</div>
+        <h2>Кутия, която детето изяжда</h2>
+      </div>
+      <div class="why">
+        <div class="reason" style="background:var(--green-bg)"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#5E9A33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M7 12l-2.5 6a2.8 2.8 0 0 0 5 0L7 12zM17 12l-2.5 6a2.8 2.8 0 0 0 5 0L17 12z"/><path d="M12 4v16M8 20h8"/></svg></span><div><h3>Балансирано</h3><p>По нещо от всяка хранителна група – картите следват метода 5 от 5.</p></div></div>
+        <div class="reason" style="background:var(--yellow-bg)"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#B88A12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span><div><h3>Бързо</h3><p>Повечето рецепти стават до 30 минути, много от тях може да се приготвят и предната вечер.</p></div></div>
+        <div class="reason" style="background:var(--coral-bg)"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#EF6F61" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.4-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.6-7.5 10-7.5 10z"/></svg></span><div><h3>Вкусно за децата</h3><p>Мъфини „Пица“, картофени гофрети, шоколадови бонбони с нахут – храна, която се връща празна.</p></div></div>
+        <div class="reason" style="background:var(--teal-bg)"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#14857C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div><h3>Ясно</h3><p>Калории, протеин, въглехидрати, мазнини и фибри на всяка рецепта – без пресмятане.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="how" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">Как работи</div>
+        <h2>Три стъпки до готова кутия</h2>
+      </div>
+      <ol class="steps">
+        <li><h3>Избери карта</h3><p>Рецепта по настроение или комбинация от картите „Комбинирай“ – заедно с детето.</p></li>
+        <li><h3>Приготви по стъпките</h3><p>Продуктите са с грамаж, стъпките са кратки и ясни.</p></li>
+        <li><h3>Сложи в кутията</h3><p>Всяка карта подсказва с какво да допълните – зеленчук, плод или айрян.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="order-band" id="order">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">Поръчка</div>
+        <h2>Поръчай комплекта</h2>
+        <p>Попълнете формата – ще се свържем с вас по телефона, за да потвърдим поръчката.</p>
+      </div>
+      <div class="order">
+        <aside class="price-card">
+          <div class="launch" id="launchTag" hidden>Стартова цена</div>
+          <div class="price"><span id="unitPrice">XX €</span><small> / комплект</small> <s id="oldPrice" hidden></s></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="#14857C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>39 карти във формат A6</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="#14857C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>28 рецепти, 7 карти знание, 3 карти „Комбинирай“, снак идеи</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="#14857C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Доставка с куриер до адрес или офис</li>
+          </ul>
+          <div class="cod">Плащане с наложен платеж при получаване.</div>
+        </aside>
+
+        <form id="orderForm" novalidate>
+          <input class="hp" type="checkbox" name="botcheck" id="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="f"><label for="name">Име и фамилия</label><input id="name" name="name" autocomplete="name" required></div>
+          <div class="f"><label for="phone">Телефон</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="08X XXX XXXX" required></div>
+          <div class="f"><label for="city">Град / село</label><input id="city" name="city" autocomplete="address-level2" required></div>
+          <div class="f"><label for="courier">Куриер</label>
+            <select id="courier" name="courier"><option>Еконт</option><option>Спиди</option></select></div>
+          <div class="f"><label for="delivery">Доставка до</label>
+            <select id="delivery" name="delivery"><option value="office">Офис на куриера</option><option value="address">Адрес</option></select></div>
+          <div class="f"><label for="qty">Брой комплекти</label>
+            <div class="qty"><button type="button" id="minus" aria-label="Намали броя">−</button><input id="qty" name="qty" type="number" min="1" max="20" value="1" inputmode="numeric"><button type="button" id="plus" aria-label="Увеличи броя">+</button></div></div>
+          <div class="f full"><label for="address" id="addressLabel">Офис на куриера</label><input id="address" name="address" placeholder="напр. Еконт, офис Център" required></div>
+          <div class="f full"><label for="note">Бележка <span class="opt">(по желание)</span></label><textarea id="note" name="note"></textarea></div>
+          <div class="f full"><label class="consent" for="consent"><input type="checkbox" id="consent" name="consent" required>Съгласен/на съм данните ми да се използват само за обработка и доставка на поръчката.</label></div>
+          <div class="f full total"><span>Общо</span><span id="total">XX €</span></div>
+          <div class="f full"><p class="err" id="formError" hidden></p><button class="btn" type="submit" id="submitBtn">Изпрати поръчката</button></div>
+          <div class="f full" id="statusBox" hidden><div class="status" id="status"></div></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="faq">
+    <div class="wrap">
+      <div class="head"><div class="eyebrow">Въпроси</div><h2>Често задавани въпроси</h2></div>
+      <div class="faq">
+        <details><summary>Колко големи са картите?</summary><p>Формат A6 – 105 × 148 мм. Удобни са за кухнята и се събират в малка кутия.</p></details>
+        <details><summary>Какво пише на всяка рецепта?</summary><p>Продуктите с грамаж, стъпки за приготвяне, хранителни стойности (kcal, протеин, въглехидрати, мазнини, фибри), идея какво да сложите в кутията и защо рецептата е добър избор.</p></details>
+        <details><summary>Как се плаща?</summary><p>С наложен платеж – плащате на куриера, когато получите пратката.</p></details>
+        <details><summary>Мога ли да поръчам няколко комплекта?</summary><p>Да. Изберете броя във формата – удобно е за подарък на приятели или за детската градина и училището.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#top" aria-label="Умна ученическа кутия – начало">
+        <svg viewBox="0 0 120 120" aria-hidden="true" width="46" height="46"><rect x="4" y="4" width="112" height="112" rx="30" fill="#FFFCF4"/><g fill="none" stroke="#14857C" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M40 52 L80 52 A10 10 0 0 1 90 62 L90 84 A10 10 0 0 1 80 94 L40 94 A10 10 0 0 1 30 84 L30 62 A10 10 0 0 1 40 52 Z"/><path d="M48 52 L48 46 A7 7 0 0 1 55 39 L65 39 A7 7 0 0 1 72 46 L72 52"/><path d="M30 70 L90 70"/><path d="M54 70 L54 77 L66 77 L66 70"/></g><g transform="translate(66 16) scale(1.05)"><path d="M0 18 C1 7 9 0 22 0 C22 12 13 19 0 18 Z" fill="#7DBB4F"/></g><path transform="translate(18 18) scale(.9)" d="M10 0 C10.6 5.6 12.4 7.4 20 8 C12.4 8.6 10.6 10.4 10 18 C9.4 10.4 7.6 8.6 0 8 C7.6 7.4 9.4 5.6 10 0 Z" fill="#F5C94C"/></svg>
+        <span class="wm"><span class="w1">Умна</span><span class="w2">УЧЕНИЧЕСКА КУТИЯ</span></span>
+      </a>
+      <small>Свежо знание във всяка кутия.</small>
+    </div>
+    <div class="contacts">
+      <span id="phoneRow" hidden>Телефон: <span id="contactPhone"></span></span>
+      <span>Имейл: <span id="contactEmail">[имейл]</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== НАСТРОЙКИ – попълнете тук ===== */
+const CONFIG = {
+  price: 19.90,             // цена на комплект в евро (null = „XX €“)
+  oldPrice: 24.90,          // редовна цена – показва се зачеркната (null = не се показва)
+  orderEmail: "yalamovbozhidar@gmail.com", // поръчките идват тук (FormSubmit)
+  phone: "",                // телефон за контакт, показва се долу
+  email: "yalamovbozhidar@gmail.com" // имейл за контакт, показва се долу
+};
+/* ===================================== */
+
+const $ = id => document.getElementById(id);
+const fmt = n => n.toLocaleString("bg-BG", {minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2}) + " €";
+if (CONFIG.phone) { $("contactPhone").textContent = CONFIG.phone; $("phoneRow").hidden = false; }
+if (CONFIG.email) $("contactEmail").textContent = CONFIG.email;
+if (CONFIG.price) $("unitPrice").textContent = fmt(CONFIG.price);
+if (CONFIG.price && CONFIG.oldPrice) { $("oldPrice").textContent = fmt(CONFIG.oldPrice); $("oldPrice").hidden = false; $("launchTag").hidden = false; }
+
+function qty(){ const v = parseInt($("qty").value, 10); return Math.min(20, Math.max(1, isNaN(v) ? 1 : v)); }
+function updateTotal(){ $("total").textContent = CONFIG.price ? fmt(CONFIG.price * qty()) : "XX €"; }
+$("minus").addEventListener("click", () => { $("qty").value = Math.max(1, qty() - 1); updateTotal(); });
+$("plus").addEventListener("click", () => { $("qty").value = Math.min(20, qty() + 1); updateTotal(); });
+$("qty").addEventListener("input", updateTotal);
+$("delivery").addEventListener("change", e => {
+  const office = e.target.value === "office";
+  $("addressLabel").textContent = office ? "Офис на куриера" : "Адрес за доставка";
+  $("address").placeholder = office ? "напр. Еконт, офис Център" : "улица, номер, блок, вход, етаж, апартамент";
+});
+updateTotal();
+
+function show(kind, html){ $("statusBox").hidden = false; const s = $("status"); s.className = "status " + kind; s.innerHTML = html; }
+
+$("orderForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target, err = $("formError");
+  const missing = [...f.querySelectorAll("[required]")].filter(el => el.type === "checkbox" ? !el.checked : !el.value.trim());
+  const phoneOk = /^[+\d][\d\s\-()]{7,}$/.test($("phone").value.trim());
+  if (missing.length || !phoneOk) {
+    err.hidden = false;
+    err.textContent = missing.some(el => el.id === "consent") && missing.length === 1
+      ? "Отбележете съгласието за обработка на данните."
+      : !phoneOk && !missing.length ? "Проверете телефона – трябва да съдържа поне 8 цифри." : "Попълнете всички задължителни полета.";
+    (missing[0] || $("phone")).focus();
+    return;
+  }
+  err.hidden = true;
+  if ($("botcheck").checked) return;
+
+  const data = {
+    "Име": $("name").value.trim(), "Телефон": $("phone").value.trim(), "Град": $("city").value.trim(),
+    "Куриер": $("courier").value, "Доставка": $("delivery").value === "office" ? "До офис" : "До адрес",
+    "Офис / адрес": $("address").value.trim(), "Брой комплекти": qty(),
+    "Сума": CONFIG.price ? fmt(CONFIG.price * qty()) : "цената не е въведена", "Бележка": $("note").value.trim() || "—"
+  };
+
+  if (!CONFIG.orderEmail) {
+    show("info", "<b>Формата още не е свързана с имейл.</b> Поръчката не е изпратена.");
+    return;
+  }
+  const btn = $("submitBtn"); btn.disabled = true; btn.textContent = "Изпращане…";
+  try {
+    const res = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(CONFIG.orderEmail), {
+      method: "POST", headers: {"Content-Type": "application/json", Accept: "application/json"},
+      body: JSON.stringify({_subject: "Нова поръчка – Умна ученическа кутия", _template: "table", _captcha: "false", ...data})
+    });
+    const out = await res.json().catch(() => ({}));
+    if (res.ok && String(out.success) === "true") {
+      f.reset(); updateTotal();
+      show("ok", "<b>Благодарим! Поръчката е изпратена.</b> Ще ви се обадим на " + data["Телефон"].replace(/[<>&]/g, "") + ", за да я потвърдим.");
+    } else throw new Error();
+  } catch {
+    show("bad", "<b>Поръчката не успя да се изпрати.</b> Проверете интернет връзката и опитайте отново" +
+      (CONFIG.phone ? " или се обадете на " + CONFIG.phone + "." : "."));
+  } finally { btn.disabled = false; btn.textContent = "Изпрати поръчката"; }
+});
+</script>
+<!--BODY-END-->
+</body>
+</html>
