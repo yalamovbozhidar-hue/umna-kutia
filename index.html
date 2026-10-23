@@ -434,9 +434,12 @@ $("orderForm").addEventListener("submit", async e => {
     if (res.ok && String(out.success) === "true") {
       f.reset(); updateTotal();
       show("ok", "<b>Благодарим! Поръчката е изпратена.</b> Ще ви се обадим на " + data["Телефон"].replace(/[<>&]/g, "") + ", за да я потвърдим.");
-    } else throw new Error();
-  } catch {
-    show("bad", "<b>Поръчката не успя да се изпрати.</b> Проверете интернет връзката и опитайте отново" +
+    } else if (/activat/i.test(out.message || "")) {
+      show("info", "<b>Формата чака активиране.</b> На " + CONFIG.orderEmail + " е изпратен имейл от FormSubmit – натиснете „Activate Form“ в него (проверете и Spam). След това поръчките ще пристигат.");
+    } else throw new Error(out.message || ("HTTP " + res.status));
+  } catch (e) {
+    console.warn("Order error:", e);
+    show("bad", "<b>Поръчката не успя да се изпрати.</b> " + (e && e.message ? "(" + String(e.message).replace(/[<>&]/g, "") + ") " : "") + "Опитайте отново след малко" +
       (CONFIG.phone ? " или се обадете на " + CONFIG.phone + "." : "."));
   } finally { btn.disabled = false; btn.textContent = "Изпрати поръчката"; }
 });
