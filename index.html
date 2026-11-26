@@ -6,9 +6,9 @@
 <!--CONTENT-START-->
 <title>Умна ученическа кутия</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="39 карти с рецепти и съвети за вкусна и балансирана училищна кутия. Поръчка с наложен платеж.">
+<meta name="description" content="28 рецепти за училищната кутия, които децата изяждат – до 30 минути, с изчислени калории и макроси. 39 карти A6, гаранция 30 дни, наложен платеж.">
 <meta property="og:title" content="Умна ученическа кутия">
-<meta property="og:description" content="39 карти с рецепти и съвети за вкусна и балансирана училищна кутия.">
+<meta property="og:description" content="Край на въпроса „Какво да му сложа утре?“ – 28 рецепти за училищната кутия с калории и макроси. Гаранция 30 дни.">
 <meta property="og:image" content="https://yalamovbozhidar-hue.github.io/umna-kutia/assets/og.jpg">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/favicon.png">
@@ -168,6 +168,48 @@ textarea{min-height:84px;resize:vertical}
 @media (max-width:860px){.order{grid-template-columns:1fr}}
 @media (max-width:520px){form{grid-template-columns:1fr;padding:20px}}
 
+/* urgency bar */
+.bar{background:var(--ink);color:#fff;font-weight:800;font-size:14.5px;text-align:center;padding:9px 16px}
+.bar b{color:var(--yellow)}
+.bar a{color:#fff}
+/* problem */
+.pain{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pain div{background:var(--paper);border:1.5px solid var(--line);border-left:6px solid var(--coral);border-radius:18px;padding:20px 22px;min-width:0}
+.pain h3{font-size:19px;margin-bottom:6px}
+.pain p{margin:0;color:var(--muted);font-size:16px}
+.turn{margin-top:28px;font-family:var(--display);font-weight:900;font-size:clamp(22px,2.6vw,28px);color:var(--teal-dk);max-width:32em;text-wrap:balance}
+@media (max-width:860px){.pain{grid-template-columns:1fr}}
+/* offer stack */
+.offer-band{background:var(--yellow-bg);padding-block:80px}
+.stack{background:var(--paper);border-radius:var(--r);padding:8px 28px;max-width:820px}
+.stack .row{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;padding:18px 0;border-bottom:1.5px dashed var(--line)}
+.stack .row:last-child{border-bottom:0}
+.stack .row h3{font-size:19px}
+.stack .row p{margin:4px 0 0;color:var(--muted);font-size:15.5px}
+.stack .bonus{display:inline-block;background:var(--green);color:#fff;font-weight:900;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:3px 9px;margin-bottom:6px}
+.stack .val{font-weight:900;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.stack .sum{font-family:var(--display);font-size:20px}
+.stack .sum .val{color:var(--ink)}
+.today{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:22px;max-width:820px}
+.today .now{font-family:var(--display);font-weight:900;font-size:clamp(34px,5vw,48px);color:var(--teal-dk);line-height:1}
+.today .now s{font-size:.5em;color:var(--muted);margin-left:8px}
+.today small{display:block;font-weight:800;color:var(--coral-ink);font-size:14.5px}
+.guar{display:flex;gap:18px;align-items:flex-start;background:var(--teal-dk);color:#fff;border-radius:var(--r);padding:24px 26px;margin-top:28px;max-width:820px}
+.guar .seal{flex:none;width:72px;height:72px;border-radius:50%;background:var(--yellow);color:var(--ink);display:grid;place-items:center;text-align:center;font-family:var(--display);font-weight:900;font-size:13px;line-height:1.05}
+.guar .seal b{font-size:24px;display:block}
+.guar h3{font-size:22px;margin-bottom:6px}
+.guar p{margin:0;color:#DFF4F1}
+/* package picker */
+.pkgs{display:grid;gap:12px}
+.pkg{display:flex;gap:14px;align-items:center;border:2px solid var(--line);border-radius:16px;padding:14px 16px;cursor:pointer;background:var(--cream);font-weight:700}
+.pkg input{width:20px;height:20px;flex:none;accent-color:var(--teal-dk)}
+.pkg .pt{flex:1;min-width:0}
+.pkg .pt b{display:block;font-family:var(--display);font-weight:900;font-size:17px}
+.pkg .pt span{color:var(--muted);font-size:14.5px}
+.pkg .pp{font-family:var(--display);font-weight:900;font-size:20px;color:var(--teal-dk);white-space:nowrap}
+.pkg:has(input:checked){border-color:var(--teal);background:var(--teal-bg)}
+.pkg .pt .flag{color:#fff;display:inline-block;background:var(--coral);color:#fff;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:2px}
+
 /* faq */
 .faq{display:grid;gap:12px;max-width:820px}
 details{background:var(--paper);border:1.5px solid var(--line);border-radius:18px;padding:18px 22px}
@@ -187,6 +229,7 @@ footer small{display:block;margin-top:14px;color:#8FB0A8;font-weight:600}
 </head>
 <body>
 <!--BODY-START-->
+<div class="bar">Стартова цена <b>24,90 €</b> вместо 29,90 € – до <b>15 декември</b> · <a href="#order">Поръчай</a></div>
 <header>
   <div class="wrap nav">
     <a class="brand" href="#top" aria-label="Умна ученическа кутия – начало">
@@ -207,17 +250,18 @@ footer small{display:block;margin-top:14px;color:#8FB0A8;font-weight:600}
     <span class="blob y" aria-hidden="true"></span><span class="blob c" aria-hidden="true"></span>
     <div class="wrap">
       <div>
-        <div class="eyebrow">Комплект карти за родители и деца</div>
-        <h1>Свежо знание <em>във всяка кутия.</em></h1>
-        <p class="lead">39 карти с рецепти и съвети, с които всяка училищна кутия става вкусна, балансирана и готова за минути.</p>
+        <div class="eyebrow">39 карти за училищната кутия</div>
+        <h1>Край на въпроса <em>„Какво да му сложа утре?“</em></h1>
+        <p class="lead">28 рецепти, които децата изяждат – повечето стават до 30 минути и имат изчислени калории и макроси. Плюс 11 карти, които показват на вас и детето как се сглобява балансирана кутия.</p>
         <div class="ctas">
-          <a class="btn" href="#order">Поръчай комплекта</a>
+          <a class="btn" href="#offer">Вземи комплекта – 24,90 €</a>
           <a class="btn ghost" href="#inside">Виж какво има вътре</a>
         </div>
         <ul class="facts">
           <li><b>28</b> рецепти</li>
-          <li><b>A6</b> · 105 × 148 мм</li>
-          <li>калории и макроси на всяка рецепта</li>
+          <li>до <b>30</b> мин</li>
+          <li>kcal и макроси на всяка</li>
+          <li><b>30</b> дни гаранция</li>
         </ul>
       </div>
       <div class="fan" aria-label="Примерни карти от комплекта">
@@ -225,6 +269,21 @@ footer small{display:block;margin-top:14px;color:#8FB0A8;font-weight:600}
         <img src="assets/cover.jpg" alt="Корица на комплекта „Умна ученическа кутия“" width="560" height="791">
         <img src="assets/hero-3.jpg" alt="Карта „Комбинирай своята кутия“" width="560" height="791">
       </div>
+    </div>
+  </section>
+
+  <section class="band" id="problem" style="padding-bottom:40px">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">Звучи ли познато?</div>
+        <h2>Всяка вечер – същият въпрос</h2>
+      </div>
+      <div class="pain">
+        <div><h3>22:00, отворен хладилник</h3><p>Утре е училище, а идеи няма. Пак сандвич или пак пари за закуска.</p></div>
+        <div><h3>Кутията се връща пълна</h3><p>Стараете се, а детето не яде – и после купува вафла от лавката.</p></div>
+        <div><h3>Сладко сутрин, умора по обед</h3><p>Само плод или сладко вдига бързо кръвната захар – и енергията пада също толкова бързо.</p></div>
+      </div>
+      <p class="turn">Комплектът решава и трите: готови рецепти за цялата седмица, храна, която децата харесват, и баланс, който държи енергията до обяд.</p>
     </div>
   </section>
 
@@ -295,23 +354,50 @@ footer small{display:block;margin-top:14px;color:#8FB0A8;font-weight:600}
     </div>
   </section>
 
+  <section class="offer-band" id="offer">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">Какво получавате</div>
+        <h2>Всичко за кутията – в един комплект</h2>
+      </div>
+      <div class="stack">
+        <div class="row"><div><h3>39 печатни карти A6</h3><p>28 рецепти (солени, сладки, снакове), 7 карти „Знание за родителите“, 3 карти „Комбинирай сам“ и 10 бързи снак идеи.</p></div><span class="val">29,90 €</span></div>
+        <div class="row"><div><span class="bonus">Бонус 1</span><h3>PDF версия на всички карти</h3><p>Изпращаме я на имейла ви още при потвърждението – започвате, преди картите да пристигнат.</p></div><span class="val">9,90 €</span></div>
+        <div class="row"><div><span class="bonus">Бонус 2</span><h3>Меню за първата седмица + списък за пазаруване</h3><p>Пет кутии от понеделник до петък, разпределени от рецептите – пазарувате веднъж в неделя.</p></div><span class="val">7,90 €</span></div>
+        <div class="row sum"><div><h3>Обща стойност</h3></div><span class="val"><s>47,70 €</s></span></div>
+      </div>
+      <div class="today">
+        <div class="now">24,90 € <s>29,90 €</s></div>
+        <div><small>Стартова цена до 15 декември</small><span style="font-weight:700;color:var(--muted)">По-малко от 1 € на рецепта. Плащане при получаване.</span></div>
+        <a class="btn" href="#order">Поръчай сега</a>
+      </div>
+      <div class="guar">
+        <div class="seal"><span><b>30</b>дни</span></div>
+        <div><h3>Гаранция „Празна кутия“</h3><p>Опитайте рецептите 30 дни. Ако решите, че комплектът не ви помага, пишете ни и ви връщаме парите. Картите остават при вас.</p></div>
+      </div>
+    </div>
+  </section>
+
   <section class="order-band" id="order">
     <div class="wrap">
       <div class="head">
         <div class="eyebrow">Поръчка</div>
         <h2>Поръчай комплекта</h2>
-        <p>Попълнете формата – ще се свържем с вас по телефона, за да потвърдим поръчката.</p>
+        <p>Попълнете формата – ще ви се обадим, за да потвърдим, и ще изпратим PDF бонусите на имейла ви.</p>
       </div>
       <div class="order">
         <aside class="price-card">
-          <div class="launch" id="launchTag">Стартова цена</div>
-          <div class="price"><span id="unitPrice">19,90 €</span><small> / комплект</small> <s id="oldPrice">24,90 €</s></div>
+          <div class="launch" id="launchTag">Стартова цена до 15 декември</div>
+          <div class="pkgs" role="radiogroup" aria-label="Изберете пакет">
+            <label class="pkg"><input type="radio" name="pkg" value="1" checked><span class="pt"><b>1 комплект</b><span>за вашето дете</span></span><span class="pp">24,90 €</span></label>
+            <label class="pkg"><input type="radio" name="pkg" value="2"><span class="pt"><b>2 комплекта <span class="flag">подарък</span></b><span>един за вас, един за приятелка или учителка – 19,95 € на брой</span></span><span class="pp">39,90 €</span></label>
+          </div>
           <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="#14857C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>39 карти във формат A6</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="#14857C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>28 рецепти, 7 карти знание, 3 карти „Комбинирай“, снак идеи</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="#14857C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Доставка с куриер до адрес или офис</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="#14857C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>39 карти A6 + PDF версия + меню за първата седмица</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="#14857C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Гаранция 30 дни – парите обратно, картите остават</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="#14857C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Изпращане с Еконт или Спиди до 7 работни дни</li>
           </ul>
-          <div class="cod">Плащане с наложен платеж при получаване.</div>
+          <div class="cod">Плащате на куриера при получаване. Доставката е по тарифата на куриера.</div>
         </aside>
 
         <form id="orderForm" novalidate>
@@ -323,12 +409,11 @@ footer small{display:block;margin-top:14px;color:#8FB0A8;font-weight:600}
             <select id="courier" name="courier"><option>Еконт</option><option>Спиди</option></select></div>
           <div class="f"><label for="delivery">Доставка до</label>
             <select id="delivery" name="delivery"><option value="office">Офис на куриера</option><option value="address">Адрес</option></select></div>
-          <div class="f"><label for="qty">Брой комплекти</label>
-            <div class="qty"><button type="button" id="minus" aria-label="Намали броя">−</button><input id="qty" name="qty" type="number" min="1" max="20" value="1" inputmode="numeric"><button type="button" id="plus" aria-label="Увеличи броя">+</button></div></div>
+          <div class="f"><label for="email">Имейл <span class="opt">(за PDF бонусите)</span></label><input id="email" name="email" type="email" autocomplete="email" placeholder="name@mail.com"></div>
           <div class="f full"><label for="address" id="addressLabel">Офис на куриера</label><input id="address" name="address" placeholder="напр. Еконт, офис Център" required></div>
           <div class="f full"><label for="note">Бележка <span class="opt">(по желание)</span></label><textarea id="note" name="note"></textarea></div>
           <div class="f full"><label class="consent" for="consent"><input type="checkbox" id="consent" name="consent" required>Съгласен/на съм данните ми да се използват само за обработка и доставка на поръчката.</label></div>
-          <div class="f full total"><span>Общо</span><span id="total">19,90 €</span></div>
+          <div class="f full total"><span>Общо</span><span id="total">24,90 €</span></div>
           <div class="f full"><p class="err" id="formError" hidden></p><button class="btn" type="submit" id="submitBtn">Изпрати поръчката</button></div>
           <div class="f full" id="statusBox" hidden><div class="status" id="status"></div></div>
         </form>
@@ -340,10 +425,14 @@ footer small{display:block;margin-top:14px;color:#8FB0A8;font-weight:600}
     <div class="wrap">
       <div class="head"><div class="eyebrow">Въпроси</div><h2>Често задавани въпроси</h2></div>
       <div class="faq">
+        <details><summary>Детето ми е капризно – ще яде ли това?</summary><p>Рецептите са избрани точно за деца: мъфини „Пица“, картофени гофрети, шоколадови гофрети, бонбони с нахут. А картите „Комбинирай“ оставят детето само да избере какво да има в кутията – тогава яде по-охотно. Ако все пак не се получи, важи гаранцията.</p></details>
+        <details><summary>Нямам време да готвя всеки ден.</summary><p>Повечето рецепти стават до 30 минути, много се правят предната вечер или веднъж за няколко дни (мъфини, питки, крекери). А 10-те снак идеи са почти без готвене.</p></details>
+        <details><summary>Как работи гаранцията?</summary><p>Имате 30 дни от получаването. Ако решите, че комплектът не ви помага, пишете ни на имейла долу и ви връщаме сумата за картите. Не е нужно да ги връщате.</p></details>
+        <details><summary>Кога ще получа комплекта?</summary><p>Изпращаме до 7 работни дни след потвърждението по телефона. PDF версията и менюто за първата седмица получавате на имейла веднага след потвърждението.</p></details>
         <details><summary>Колко големи са картите?</summary><p>Формат A6 – 105 × 148 мм. Удобни са за кухнята и се събират в малка кутия.</p></details>
         <details><summary>Какво пише на всяка рецепта?</summary><p>Продуктите с грамаж, стъпки за приготвяне, хранителни стойности (kcal, протеин, въглехидрати, мазнини, фибри), идея какво да сложите в кутията и защо рецептата е добър избор.</p></details>
         <details><summary>Как се плаща?</summary><p>С наложен платеж – плащате на куриера, когато получите пратката.</p></details>
-        <details><summary>Мога ли да поръчам няколко комплекта?</summary><p>Да. Изберете броя във формата – удобно е за подарък на приятели или за детската градина и училището.</p></details>
+        <details><summary>Мога ли да поръчам повече комплекти?</summary><p>Да. Пакетът от 2 е 39,90 € – удобен за подарък. За 3 или повече напишете броя в бележката и ще ви предложим цена.</p></details>
       </div>
     </div>
   </section>
@@ -368,8 +457,7 @@ footer small{display:block;margin-top:14px;color:#8FB0A8;font-weight:600}
 <script>
 /* ===== НАСТРОЙКИ – попълнете тук ===== */
 const CONFIG = {
-  price: 19.90,             // цена на комплект в евро (null = „XX €“)
-  oldPrice: 24.90,          // редовна цена – показва се зачеркната (null = не се показва)
+  packages: {"1": 24.90, "2": 39.90}, // цена по пакети в евро (брой комплекти: обща цена)
   orderEmail: "yalamovbozhidar@gmail.com", // за справка – поръчките идват на имейла от Web3Forms
   web3formsKey: "bd29a19f-9a87-4707-9122-3f2608c20aad", // публичен ключ от web3forms.com
   phone: "",                // телефон за контакт, показва се долу
@@ -381,14 +469,11 @@ const $ = id => document.getElementById(id);
 const fmt = n => n.toLocaleString("bg-BG", {minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2}) + " €";
 if (CONFIG.phone) { $("contactPhone").textContent = CONFIG.phone; $("phoneRow").hidden = false; }
 if (CONFIG.email) $("contactEmail").textContent = CONFIG.email;
-if (CONFIG.price) $("unitPrice").textContent = fmt(CONFIG.price);
-if (CONFIG.price && CONFIG.oldPrice) { $("oldPrice").textContent = fmt(CONFIG.oldPrice); $("oldPrice").hidden = false; $("launchTag").hidden = false; }
-
-function qty(){ const v = parseInt($("qty").value, 10); return Math.min(20, Math.max(1, isNaN(v) ? 1 : v)); }
-function updateTotal(){ $("total").textContent = CONFIG.price ? fmt(CONFIG.price * qty()) : "XX €"; }
-$("minus").addEventListener("click", () => { $("qty").value = Math.max(1, qty() - 1); updateTotal(); });
-$("plus").addEventListener("click", () => { $("qty").value = Math.min(20, qty() + 1); updateTotal(); });
-$("qty").addEventListener("input", updateTotal);
+function pkg(){ const r = document.querySelector('input[name="pkg"]:checked'); return r ? r.value : "1"; }
+function qty(){ return parseInt(pkg(), 10); }
+function sum(){ return CONFIG.packages[pkg()]; }
+function updateTotal(){ $("total").textContent = fmt(sum()); }
+document.querySelectorAll('input[name="pkg"]').forEach(r => r.addEventListener("change", updateTotal));
 $("delivery").addEventListener("change", e => {
   const office = e.target.value === "office";
   $("addressLabel").textContent = office ? "Офис на куриера" : "Адрес за доставка";
@@ -434,7 +519,7 @@ $("orderForm").addEventListener("submit", async e => {
     "Име": $("name").value.trim(), "Телефон": $("phone").value.trim(), "Град": $("city").value.trim(),
     "Куриер": $("courier").value, "Доставка": $("delivery").value === "office" ? "До офис" : "До адрес",
     "Офис / адрес": $("address").value.trim(), "Брой комплекти": qty(),
-    "Сума": CONFIG.price ? fmt(CONFIG.price * qty()) : "цената не е въведена", "Бележка": $("note").value.trim() || "—"
+    "Сума": fmt(sum()), "Имейл": $("email").value.trim() || "—", "Бележка": $("note").value.trim() || "—"
   };
 
   if (!CONFIG.web3formsKey) {
