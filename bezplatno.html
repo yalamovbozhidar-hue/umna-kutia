@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3 рецепти за кутията – безплатно | Умна ученическа кутия</title>
+<meta name="description" content="3 рецепти за училищната кутия, които децата изяждат, + картата „Вместо купеното“. Безплатно, на имейла ви веднага.">
+<meta property="og:title" content="3 рецепти за кутията – безплатно">
+<meta property="og:description" content="Рецептите, които децата изяждат. Получавате ги веднага.">
+<meta property="og:image" content="https://yalamovbozhidar-hue.github.io/umna-kutia/assets/lead-og.jpg">
+<link rel="icon" href="assets/favicon.png">
+<style>
+:root{--ink:#1d1d1f;--sub:#6e6e73;--teal:#0f7a72;--bg:#f5f3ef}
+*{box-sizing:border-box;margin:0}
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+.top{background:var(--teal);color:#fff;padding:28px 22px 120px;text-align:center}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;opacity:.95}
+.brand img{width:28px;height:28px;border-radius:8px}
+.tag{display:inline-block;margin-top:34px;background:#fff;color:var(--teal);border-radius:99px;padding:7px 16px;font-weight:700;font-size:14px}
+h1{font-size:clamp(38px,8vw,64px);line-height:1;letter-spacing:-.035em;margin-top:16px}
+.top p{font-size:clamp(17px,2.4vw,21px);opacity:.9;margin:14px auto 0;max-width:30em;line-height:1.35}
+.fan{display:flex;justify-content:center;margin:-90px auto 0;max-width:640px;padding:0 10px}
+.fan img{width:33%;max-width:210px;border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.22);background:#fff}
+.fan img:nth-child(1){transform:rotate(-7deg) translateX(18px)}.fan img:nth-child(2){transform:translateY(-14px);z-index:2}.fan img:nth-child(3){transform:rotate(7deg) translateX(-18px)}
+main{max-width:560px;margin:0 auto;padding:40px 22px 60px}
+.list{background:var(--bg);border-radius:20px;padding:6px 20px}
+.list div{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-top:1px solid #e5e1da;font-weight:600}.list div:first-child{border-top:0}
+.list em{font-style:normal;color:var(--teal);white-space:nowrap}
+form{margin-top:26px;display:flex;flex-direction:column;gap:12px}
+input[type=email]{font:inherit;font-size:18px;padding:16px 20px;border-radius:14px;border:1.5px solid #d2d2d7;outline:none}
+input[type=email]:focus{border-color:var(--teal)}
+button{font:inherit;font-size:18px;font-weight:700;padding:17px;border-radius:99px;border:0;background:var(--ink);color:#fff;cursor:pointer}
+button:disabled{opacity:.6}
+.consent{display:flex;gap:10px;font-size:13.5px;color:var(--sub);line-height:1.4;align-items:flex-start}
+.consent input{margin-top:2px;width:18px;height:18px;flex:none}
+.err{color:#d9483b;font-size:14px}
+.ok{background:#e6f4f2;border-radius:18px;padding:22px;text-align:center;margin-top:26px}
+.ok a.dl{display:inline-block;margin-top:14px;background:var(--teal);color:#fff;text-decoration:none;font-weight:700;padding:15px 26px;border-radius:99px}
+.ok p{color:var(--sub);margin-top:12px;font-size:15px}
+.trust{margin-top:22px;text-align:center;color:var(--sub);font-size:14px}
+footer{text-align:center;color:#8e8e93;font-size:12.5px;padding:0 22px 40px;line-height:1.5}
+footer a{color:inherit}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><img src="assets/favicon.png" alt="">Умна ученическа кутия</div><br>
+  <span class="tag">Безплатно · сваляте веднага</span>
+  <h1>3 рецепти, които<br>децата изяждат.</h1>
+  <p>Мини мъфини „Пица“, картофени гофрети и шоколадови гофрети – плюс картата „Вместо купеното“. Пекат се в неделя и стигат до сряда.</p>
+</header>
+<div class="fan"><img src="assets/lead-1.png" alt="Карта Мини мъфини Пица"><img src="assets/lead-2.png" alt="Карта Шоколадови гофрети"><img src="assets/lead-3.png" alt="Карта Вместо купеното"></div>
+<main>
+  <div class="list">
+    <div><span>Мини мъфини „Пица“</span><em>карта № 06</em></div>
+    <div><span>Картофени гофрети</span><em>карта № 07</em></div>
+    <div><span>Шоколадови гофрети с пудинг</span><em>карта № 16</em></div>
+    <div><span>„Вместо купеното“ – вафла, солети, сок…</span><em>знание</em></div>
+  </div>
+  <form id="f" novalidate>
+    <input type="email" id="email" placeholder="Вашият имейл" autocomplete="email" aria-label="Имейл" required>
+    <label class="consent"><input type="checkbox" id="ok" required><span>Съгласна съм да получа рецептите и полезни имейли от „Умна ученическа кутия“. Мога да се отпиша по всяко време с един отговор на имейла.</span></label>
+    <p class="err" id="err" hidden></p>
+    <button id="b" type="submit">Вземи рецептите безплатно</button>
+  </form>
+  <div class="ok" id="done" hidden>
+    <b style="font-size:20px">Готово! Ето рецептите 🎉</b><br>
+    <a class="dl" href="assets/3-recepti-bezplatno.pdf" download>Свали PDF-а</a>
+    <p>Отпечатайте ги – всяка страница е карта A6. Скоро ще ви пишем и с още идеи за кутията.</p>
+  </div>
+  <p class="trust">Без спам · отписване с един отговор</p>
+</main>
+<footer>Умна ученическа кутия · <a href="./">Целият комплект от 40 карти</a><br>Материалите са образователни и не заменят консултация с лекар или диетолог.</footer>
+<script>
+const KEY="c4dd8e66-0fe7-45ea-a265-c6cf115db670";
+const src=new URLSearchParams(location.search).get("src")||"direct";
+const $=id=>document.getElementById(id);
+$("f").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const email=$("email").value.trim();
+  if(!/^\S+@\S+\.\S+$/.test(email)){$("err").textContent="Моля, въведете валиден имейл.";$("err").hidden=false;return}
+  if(!$("ok").checked){$("err").textContent="Моля, отметнете съгласието, за да ви пратим рецептите.";$("err").hidden=false;return}
+  $("err").hidden=true;$("b").disabled=true;$("b").textContent="Изпращаме…";
+  try{
+    await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
+      body:JSON.stringify({access_key:KEY,from_name:"Умна ученическа кутия",subject:"Нов абонат – 3 безплатни рецепти","Имейл":email,"Източник":src,"Съгласие":"да",botcheck:""})});
+  }catch(_){}
+  $("f").hidden=true;$("done").hidden=false;
+});
+</script>
+</body>
+</html>
