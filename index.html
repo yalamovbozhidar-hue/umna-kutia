@@ -224,6 +224,41 @@ summary::after{content:"+";font-weight:300;font-size:26px;line-height:.8;color:v
 details[open] summary::after{content:"−"}
 details p{color:var(--sub);margin-top:10px;font-size:17px}
 
+/* sticky buy bar */
+.buybar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-top:1px solid rgba(0,0,0,.1);padding:10px max(16px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.buybar.on{transform:none}
+.buybar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:0}
+.buybar b{font-weight:600;font-size:15px;display:block}
+.buybar span{font-size:13px;color:var(--sub)}
+.buybar .btn{padding:10px 20px;font-size:15px;white-space:nowrap}
+body{padding-bottom:76px}
+/* delivery picker */
+.ship{display:grid;gap:10px}
+.ship label{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:12px 14px;cursor:pointer;font-weight:400}
+.ship label:has(input:checked){border-color:var(--teal);box-shadow:0 0 0 1px var(--teal)}
+.ship input{width:18px;height:18px;flex:none;accent-color:var(--teal)}
+.ship .t{flex:1;min-width:0}
+.ship .t b{display:block;font-weight:600;font-size:15px}
+.ship .t small{color:var(--sub);font-size:13px}
+.ship .c{font-weight:600;font-size:15px;white-space:nowrap}
+.ship .c.free{color:var(--teal)}
+/* first print run */
+.run{max-width:760px;margin:40px auto 0;text-align:center;font-size:15px;color:var(--sub)}
+.run b{color:var(--ink);font-weight:600}
+/* early lead + sheet */
+.hero .free{display:block;margin-top:18px;font-size:15px}
+.sheet{position:fixed;left:50%;bottom:16px;z-index:40;width:min(440px,calc(100% - 24px));transform:translate(-50%,140%);transition:transform .45s cubic-bezier(.2,.7,.2,1);
+  background:#fff;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.22);padding:24px 22px 22px}
+.sheet.on{transform:translate(-50%,0)}
+.sheet h3{font-size:21px;padding-right:30px}
+.sheet p{color:var(--sub);font-size:15px;margin-top:6px}
+.sheet .x{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:50%;border:0;background:var(--alt);font-size:18px;line-height:1;cursor:pointer;color:var(--sub)}
+.sheet form{background:none;padding:0;display:flex;gap:8px;margin-top:14px;grid-template-columns:none}
+.sheet input{border-radius:980px;padding:11px 16px;font-size:16px}
+.sheet .btn{width:auto;white-space:nowrap;padding:11px 18px;font-size:15px}
+@media (max-width:420px){.sheet form{flex-direction:column}.sheet .btn{width:100%}}
+
 footer{background:var(--alt);color:var(--sub);font-size:12px;padding:30px 0 40px}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;border-top:1px solid var(--line);padding-top:18px}
 footer a{color:var(--sub)}
@@ -231,7 +266,7 @@ footer a{color:var(--sub)}
 </head>
 <body>
 
-<div class="ribbon">Стартова цена <b>24,90 €</b> вместо 29,90 € – до 15 декември. <a class="more" href="#order">Поръчай</a></div>
+<div class="ribbon">Стартова цена <b>24,90 €</b> и безплатна доставка до BOX NOW – до 15 декември. <a class="more" href="#order">Поръчай</a></div>
 
 <header class="lnav">
   <div class="wrap">
@@ -255,11 +290,12 @@ footer a{color:var(--sub)}
       <p class="kicker">Ново за училищната кутия</p>
       <h1>Кутията, която се връща празна.</h1>
       <p class="lead">28 рецепти, които децата изяждат. До 30 минути. С калории и макроси на всяка.</p>
-      <p class="price">24,90 € · гаранция 30 дни · плащане при получаване</p>
+      <p class="price">24,90 € · безплатна доставка до BOX NOW · гаранция 30 дни</p>
       <div class="ctas">
         <a class="btn" href="#order">Поръчай</a>
         <a class="more" href="#features">Виж какво има вътре</a>
       </div>
+      <a class="free more" href="#free">Или вземете 3 рецепти безплатно</a>
     </div>
     <div class="fan" id="fan" aria-label="Карти от комплекта">
       <img src="assets/hero-1.jpg" alt="Гръб на рецептурна карта: стъпки, хранителни стойности и идея за кутията" width="560" height="791">
@@ -317,15 +353,15 @@ footer a{color:var(--sub)}
           <line x1="40" y1="250" x2="505" y2="250" stroke="#d2d2d7"/>
           <line x1="40" y1="20" x2="40" y2="250" stroke="#d2d2d7"/>
           <line x1="40" y1="190" x2="505" y2="190" stroke="#e5e5ea" stroke-dasharray="4 6"/>
-          <text x="500" y="180" font-size="12" fill="#86868b" text-anchor="end">ниво преди храненето</text>
+          <text x="48" y="210" font-size="12" fill="#86868b">ниво преди храненето</text>
           <path class="curve" d="M40 190 C 95 190, 110 40, 160 42 S 230 230, 290 232 S 400 200, 505 192" fill="none" stroke="#d9483b" stroke-width="4" stroke-linecap="round"/>
           <path class="curve two" d="M40 190 C 110 190, 150 120, 220 118 S 350 135, 420 160 S 480 185, 505 188" fill="none" stroke="#0f7a72" stroke-width="4" stroke-linecap="round"/>
           <text x="40" y="272" font-size="12" fill="#86868b">хранене</text>
           <text x="505" y="272" font-size="12" fill="#86868b" text-anchor="end">2 часа след това</text>
           <text x="22" y="30" font-size="12" fill="#86868b" transform="rotate(-90 22 30)" text-anchor="end">кръвна захар</text>
           <text x="166" y="34" font-size="13" fill="#d9483b" font-weight="600">бърз скок</text>
-          <text x="260" y="222" font-size="13" fill="#d9483b" font-weight="600">спад и умора</text>
-          <text x="232" y="110" font-size="13" fill="#0f7a72" font-weight="600">равна енергия</text>
+          <text x="236" y="244" font-size="13" fill="#d9483b" font-weight="600" text-anchor="end">спад и умора</text>
+          <text x="226" y="102" font-size="13" fill="#0f7a72" font-weight="600">равна енергия</text>
         </svg>
         <figcaption>
           <div class="legend"><span><i style="background:#d9483b"></i>Само плод</span><span><i style="background:#0f7a72"></i>Плод + ядки или скир</span></div>
@@ -354,6 +390,7 @@ footer a{color:var(--sub)}
         <div class="seal"><span><b>30</b>дни</span></div>
         <div><h3>Гаранция „Празна кутия“</h3><p>Опитайте рецептите 30 дни. Ако решите, че комплектът не ви помага, пишете ни и ви връщаме парите. Без въпроси. Картите остават при вас.</p></div>
       </div>
+      <p class="run"><b>Първият тираж е 50 комплекта.</b> Отпечатваме ги ръчно на плътен матов картон – когато свършат, стартовата цена също свършва.</p>
     </div>
   </section>
 
@@ -395,8 +432,8 @@ footer a{color:var(--sub)}
           <label class="pkg"><input type="radio" name="pkg" value="class"><span class="pt"><b>За класа – 10+ комплекта</b><span>от 16,90 € на брой, ще ви се обадим с оферта</span></span><span class="pp">запитване</span></label>
           <label class="bump"><input type="checkbox" id="bump"><span><b>Да, добавете и месечно меню за 4,90 €</b><span>4 седмици готови кутии + списъци за пазаруване по седмици. Само с тази поръчка – после е 9,90 €.</span></span></label>
           <ul class="facts">
-            <li>Изпращане с Еконт или Спиди до 7 работни дни</li>
-            <li>Доставката е по тарифата на куриера</li>
+            <li>Изпращаме до 7 работни дни</li>
+            <li>Менюто за първата седмица – веднага след поръчката</li>
             <li>Гаранция 30 дни</li>
           </ul>
         </div>
@@ -405,14 +442,18 @@ footer a{color:var(--sub)}
           <input class="hp" type="checkbox" name="botcheck" id="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="f"><label for="name">Име и фамилия</label><input id="name" name="name" autocomplete="name" required></div>
           <div class="f"><label for="phone">Телефон</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="08X XXX XXXX" required></div>
-          <div class="f full"><label for="email">Имейл <span class="opt">(за PDF бонусите)</span></label><input id="email" name="email" type="email" autocomplete="email" placeholder="name@mail.com"></div>
+          <div class="f full"><label for="email">Имейл <span class="opt">(тук пращаме PDF бонусите)</span></label><input id="email" name="email" type="email" autocomplete="email" placeholder="name@mail.com" required></div>
           <div class="f"><label for="city">Град / село</label><input id="city" name="city" autocomplete="address-level2" required></div>
-          <div class="f"><label for="courier">Куриер</label><select id="courier" name="courier"><option>Еконт</option><option>Спиди</option></select></div>
-          <div class="f"><label for="delivery">Доставка до</label><select id="delivery" name="delivery"><option value="office">Офис на куриера</option><option value="address">Адрес</option></select></div>
-          <div class="f"><label for="address" id="addressLabel">Офис на куриера</label><input id="address" name="address" placeholder="напр. Еконт, офис Център" required></div>
+          <div class="f full"><span style="font-weight:500;font-size:14px">Доставка</span>
+            <div class="ship" role="radiogroup" aria-label="Доставка">
+              <label><input type="radio" name="ship" value="boxnow" checked><span class="t"><b>BOX NOW автомат</b><small>Плащате с карта по линк при вземане</small></span><span class="c free">Безплатно</span></label>
+              <label><input type="radio" name="ship" value="econt"><span class="t"><b>Еконт</b><small>До офис или адрес, наложен платеж</small></span><span class="c">3,00 €</span></label>
+              <label><input type="radio" name="ship" value="speedy"><span class="t"><b>Спиди</b><small>До офис или адрес, наложен платеж</small></span><span class="c">3,00 €</span></label>
+            </div></div>
+          <div class="f full"><label for="address" id="addressLabel">Автомат BOX NOW</label><input id="address" name="address" placeholder="град и адрес или номер на автомата" required></div>
           <div class="f full"><label for="note">Бележка <span class="opt">(по желание)</span></label><textarea id="note" name="note"></textarea></div>
           <div class="f full"><label class="consent" for="consent"><input type="checkbox" id="consent" name="consent" required>Съгласен/на съм данните ми да се използват само за обработка и доставка на поръчката.</label></div>
-          <div class="f full total"><span>Общо<small>+ доставка, плащане при получаване</small></span><span id="total">24,90 €</span></div>
+          <div class="f full total"><span>Общо<small id="shipNote">с безплатна доставка до BOX NOW</small></span><span id="total">24,90 €</span></div>
           <div class="f full"><p class="err" id="formError" hidden></p><button class="btn" type="submit" id="submitBtn">Изпрати поръчката</button></div>
           <div class="f full" id="statusBox" hidden><div class="status" id="status"></div>
             <div class="upsell" id="upsell" hidden>
@@ -426,7 +467,7 @@ footer a{color:var(--sub)}
     </div>
   </section>
 
-  <section class="sec alt">
+  <section class="sec alt" id="free">
     <div class="wrap lead-box">
       <h2>Още не сте сигурни? Опитайте 3 рецепти безплатно.</h2>
       <p>Мъфини „Пица“, картофени гофрети и бонбони с нахут – плюс картата „Методът 5 от 5“. Пращаме ги на имейла ви.</p>
@@ -448,12 +489,24 @@ footer a{color:var(--sub)}
         <details><summary>Как работи гаранцията?</summary><p>Имате 30 дни от получаването. Ако решите, че комплектът не ви помага, пишете ни и ви връщаме сумата за картите. Не е нужно да ги връщате.</p></details>
         <details><summary>Кога ще получа комплекта?</summary><p>Изпращаме до 7 работни дни след потвърждението по телефона. Менюто за първата седмица сваляте веднага след поръчката, а PDF версията на картите идва на имейла ви след потвърждението.</p></details>
         <details><summary>Колко големи са картите?</summary><p>Формат A6 – 105 × 148 мм. Удобни са за кухнята и се събират в малка кутия.</p></details>
-        <details><summary>Как се плаща?</summary><p>С наложен платеж – плащате на куриера, когато получите пратката. Доставката е по тарифата на куриера.</p></details>
+        <details><summary>Как се плаща и колко е доставката?</summary><p>До автомат BOX NOW доставката е безплатна – плащате с карта по линк, който получавате, когато пратката пристигне. С Еконт или Спиди доставката е 3 € и плащате на куриера в брой или с карта.</p></details>
         <details><summary>Правите ли отстъпка за клас или градина?</summary><p>Да – при 10 или повече комплекта цената е от 16,90 € на брой. Изберете „За класа“ във формата и ще ви се обадим с оферта.</p></details>
       </div>
     </div>
   </section>
 </main>
+
+<div class="buybar" id="buybar" aria-hidden="true">
+  <div class="wrap"><div><b>Умна ученическа кутия</b><span>24,90 € · BOX NOW безплатно</span></div><a class="btn" href="#order" tabindex="-1">Поръчай</a></div>
+</div>
+
+<div class="sheet" id="sheet" role="dialog" aria-labelledby="sheetT" aria-hidden="true">
+  <button class="x" type="button" id="sheetX" aria-label="Затвори">×</button>
+  <h3 id="sheetT">3 рецепти безплатно?</h3>
+  <p>Мъфини „Пица“, картофени гофрети и бонбони с нахут – на имейла ви за секунди.</p>
+  <form id="sheetForm" novalidate><input type="email" id="sheetEmail" placeholder="Вашият имейл" autocomplete="email" aria-label="Имейл"><button class="btn" type="submit">Изпрати ми ги</button></form>
+  <p id="sheetOk" hidden></p>
+</div>
 
 <footer>
   <div class="wrap">
@@ -486,18 +539,22 @@ if ("IntersectionObserver" in window) {
 } else chart.classList.add("go");
 
 function pkg(){ const r = document.querySelector('input[name="pkg"]:checked'); return r ? r.value : "1"; }
-function sum(){ const p = CONFIG.packages[pkg()]; return p == null ? null : p + ($("bump").checked ? CONFIG.bump : 0); }
-function updateTotal(){ const s = sum(); $("total").textContent = s == null ? "по оферта" : fmt(s); }
+function ship(){ const r = document.querySelector('input[name="ship"]:checked'); return r ? r.value : "boxnow"; }
+const SHIP = {boxnow:{name:"BOX NOW автомат", fee:0}, econt:{name:"Еконт", fee:3}, speedy:{name:"Спиди", fee:3}};
+function sum(){ const p = CONFIG.packages[pkg()]; return p == null ? null : p + ($("bump").checked ? CONFIG.bump : 0) + SHIP[ship()].fee; }
+function updateTotal(){
+  const s = sum(); $("total").textContent = s == null ? "по оферта" : fmt(s);
+  $("shipNote").textContent = ship() === "boxnow" ? "с безплатна доставка до BOX NOW" : "с доставка 3 € с " + SHIP[ship()].name;
+  const box = ship() === "boxnow";
+  $("addressLabel").textContent = box ? "Автомат BOX NOW" : "Офис или адрес на " + SHIP[ship()].name;
+  $("address").placeholder = box ? "град и адрес или номер на автомата" : "напр. офис Център или ул., №, бл., вх., ап.";
+}
+document.querySelectorAll('input[name="ship"]').forEach(r => r.addEventListener("change", updateTotal));
 document.querySelectorAll('input[name="pkg"]').forEach(r => r.addEventListener("change", updateTotal));
 $("bump").addEventListener("change", updateTotal);
 document.querySelectorAll("[data-pkg]").forEach(a => a.addEventListener("click", () => {
   const r = document.querySelector('input[name="pkg"][value="' + a.dataset.pkg + '"]'); if (r) { r.checked = true; updateTotal(); }
 }));
-$("delivery").addEventListener("change", e => {
-  const office = e.target.value === "office";
-  $("addressLabel").textContent = office ? "Офис на куриера" : "Адрес за доставка";
-  $("address").placeholder = office ? "напр. Еконт, офис Център" : "улица, номер, блок, вход, етаж, апартамент";
-});
 updateTotal();
 
 async function send(fields){
@@ -536,6 +593,7 @@ $("orderForm").addEventListener("submit", async e => {
   if (missing.length || !phoneOk) {
     err.hidden = false;
     err.textContent = missing.some(el => el.id === "consent") && missing.length === 1 ? "Отбележете съгласието за обработка на данните."
+      : missing.some(el => el.id === "email") && missing.length === 1 ? "Въведете имейл – там пращаме PDF бонусите."
       : !phoneOk && !missing.length ? "Проверете телефона – трябва да съдържа поне 8 цифри." : "Попълнете всички задължителни полета.";
     (missing[0] || $("phone")).focus(); return;
   }
@@ -547,8 +605,8 @@ $("orderForm").addEventListener("submit", async e => {
     "Месечно меню (+4,90 €)": $("bump").checked ? "ДА" : "не",
     "Сума": s == null ? "по оферта" : fmt(s),
     "Име": $("name").value.trim(), "Телефон": $("phone").value.trim(), "Имейл": $("email").value.trim() || "—",
-    "Град": $("city").value.trim(), "Куриер": $("courier").value, "Доставка": $("delivery").value === "office" ? "До офис" : "До адрес",
-    "Офис / адрес": $("address").value.trim(), "Бележка": $("note").value.trim() || "—"
+    "Град": $("city").value.trim(), "Доставка": SHIP[ship()].name + (SHIP[ship()].fee ? " (+3 €)" : " (безплатно)"),
+    "Автомат / офис / адрес": $("address").value.trim(), "Бележка": $("note").value.trim() || "—"
   };
   const btn = $("submitBtn"); btn.disabled = true; btn.textContent = "Изпращане…";
   const ok = await send({subject: (p === "class" ? "Запитване за клас" : "Нова поръчка") + " – Умна ученическа кутия", ...data});
@@ -570,12 +628,40 @@ $("upsellBtn").addEventListener("click", async () => {
   $("upsell").innerHTML = ok ? "<b>Добавено.</b> Вторият комплект за " + fmt(CONFIG.upsell) + " е в същата пратка." : "<b>Не успяхме да добавим комплекта.</b> Кажете ни, когато ви се обадим.";
 });
 
+/* sticky buy bar: after the hero, hidden while the order form is on screen */
+const bar = $("buybar"), hero = document.querySelector(".hero"), orderSec = $("order");
+let pastHero = false, atOrder = false;
+const syncBar = () => { const on = pastHero && !atOrder; bar.classList.toggle("on", on); bar.setAttribute("aria-hidden", on ? "false" : "true"); bar.querySelector("a").tabIndex = on ? 0 : -1; };
+if ("IntersectionObserver" in window) {
+  new IntersectionObserver(es => { pastHero = !es[0].isIntersecting; syncBar(); }).observe(hero);
+  new IntersectionObserver(es => { atOrder = es[0].isIntersecting; syncBar(); }, {threshold:.15}).observe(orderSec);
+}
+
+/* one-time slide-up offer for the free recipes */
+const store = { get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem(k,v); } catch(e){} } };
+const sheet = $("sheet");
+function openSheet(){ if (store.get("uk_sheet") || atOrder) return; store.set("uk_sheet","1"); sheet.classList.add("on"); sheet.setAttribute("aria-hidden","false"); }
+function closeSheet(){ sheet.classList.remove("on"); sheet.setAttribute("aria-hidden","true"); }
+$("sheetX").addEventListener("click", closeSheet);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+let sheetTimer = setTimeout(openSheet, 25000);
+addEventListener("scroll", function once(){ if (scrollY > document.body.scrollHeight * .45) { openSheet(); clearTimeout(sheetTimer); removeEventListener("scroll", once); } }, {passive:true});
+async function lead(email, source){ await send({subject: "Нов абонат – 3 безплатни рецепти", "Имейл": email, "Източник": source}); store.set("uk_sheet","1"); }
+$("sheetForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const em = $("sheetEmail").value.trim();
+  if (!/^\S+@\S+\.\S+$/.test(em)) { $("sheetEmail").focus(); $("sheetEmail").style.borderColor = "var(--coral)"; return; }
+  await lead(em, "изскачащо предложение");
+  $("sheetForm").hidden = true; const ok = $("sheetOk"); ok.hidden = false;
+  ok.innerHTML = 'Готово! <a href="assets/3-recepti-bezplatno.pdf" download>Свалете рецептите тук</a>.';
+});
+
 $("leadForm").addEventListener("submit", async e => {
   e.preventDefault();
   const em = $("leadEmail").value.trim(), er = $("leadErr");
   if (!/^\S+@\S+\.\S+$/.test(em)) { er.hidden = false; er.textContent = "Въведете валиден имейл."; $("leadEmail").focus(); return; }
   er.hidden = true; $("leadBtn").disabled = true;
-  await send({subject: "Нов абонат – 3 безплатни рецепти", "Имейл": em});
+  await lead(em, "секция безплатни рецепти");
   $("leadForm").hidden = true; $("leadOk").hidden = false;
 });
 </script>
