@@ -454,7 +454,7 @@ footer a{color:var(--sub)}
             </div></div>
           <div class="f full"><label for="address" id="addressLabel">Автомат BOX NOW</label><input id="address" name="address" placeholder="град и адрес или номер на автомата" required></div>
           <div class="f full"><label for="note">Бележка <span class="opt">(по желание)</span></label><textarea id="note" name="note"></textarea></div>
-          <div class="f full"><label class="consent" for="consent"><input type="checkbox" id="consent" name="consent" required>Съгласен/на съм данните ми да се използват само за обработка и доставка на поръчката.</label></div>
+          <div class="f full"><label class="consent" for="consent"><input type="checkbox" id="consent" name="consent" required>Приемам <a href="obshti-usloviya.html" target="_blank">Общите условия</a> и <a href="poveritelnost.html" target="_blank">Политиката за поверителност</a>. Съгласен/на съм PDF бонусите да ми бъдат изпратени веднага след потвърждението и знам, че за тях правото на отказ отпада. За печатните карти имам 14 дни право на отказ.</label></div>
           <div class="f full total"><span>Общо<small id="shipNote">с безплатна доставка до BOX NOW</small></span><span id="total">24,90 €</span></div>
           <div class="f full"><p class="err" id="formError" hidden></p><button class="btn" type="submit" id="submitBtn">Изпрати поръчката</button></div>
           <div class="f full" id="statusBox" hidden><div class="status" id="status"></div>
@@ -477,6 +477,7 @@ footer a{color:var(--sub)}
         <input type="email" id="leadEmail" placeholder="Вашият имейл" autocomplete="email" aria-label="Имейл" required>
         <button class="btn" type="submit" id="leadBtn">Вземи рецептите</button>
       </form>
+      <p class="legal-note" style="font-size:13px;color:#6e6e73;margin-top:10px">С натискане на бутона се съгласявате да получавате рецептите и полезни имейли. Отписване – по всяко време. <a href="poveritelnost.html" target="_blank">Поверителност</a></p>
       <p class="err" id="leadErr" hidden></p>
       <div id="leadOk" hidden style="margin-top:18px"><div class="status ok">Готово! <a href="assets/3-recepti-bezplatno.pdf" download>Свалете рецептите тук</a>. Приятно хапване!</div></div>
     </div>
@@ -506,14 +507,14 @@ footer a{color:var(--sub)}
   <button class="x" type="button" id="sheetX" aria-label="Затвори">×</button>
   <h3 id="sheetT">3 рецепти безплатно?</h3>
   <p>Мини мъфини „Пица“, картофени и шоколадови гофрети + картата „Вместо купеното“ – сваляте ги веднага.</p>
-  <form id="sheetForm" novalidate><input type="email" id="sheetEmail" placeholder="Вашият имейл" autocomplete="email" aria-label="Имейл"><button class="btn" type="submit">Изпрати ми ги</button></form>
+  <form id="sheetForm" novalidate><input type="email" id="sheetEmail" placeholder="Вашият имейл" autocomplete="email" aria-label="Имейл"><button class="btn" type="submit">Изпрати ми ги</button></form><p style="font-size:12px;color:#6e6e73;margin-top:8px">Съгласявате се да получавате полезни имейли. <a href="poveritelnost.html" target="_blank">Поверителност</a></p>
   <p id="sheetOk" hidden></p>
 </div>
 
 <footer>
   <div class="wrap">
     <span>Умна ученическа кутия. Свежо знание във всяка кутия.<br><small>Материалите са образователни и не заменят консултация с лекар или диетолог.</small></span>
-    <span>Имейл: <a id="contactEmail" href="mailto:karti.official.bg@gmail.com">karti.official.bg@gmail.com</a><span id="phoneRow" hidden> · Телефон: <span id="contactPhone"></span></span></span>
+    <span><a href="obshti-usloviya.html">Общи условия</a> · <a href="poveritelnost.html">Поверителност</a> · Имейл: <a id="contactEmail" href="mailto:karti.official.bg@gmail.com">karti.official.bg@gmail.com</a><span id="phoneRow" hidden> · Телефон: <span id="contactPhone"></span></span></span>
   </div>
 </footer>
 
